@@ -1,0 +1,22 @@
+{
+  "name": "toyproblems",
+  "version": "1.0.0",
+  "description": "toy problems",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "toyProblems"
+  },
+  "author": "David Friedman",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.15",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.15",
+    "nodemon": "^2.0.7"
+  }
+}
