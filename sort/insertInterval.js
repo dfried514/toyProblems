@@ -1,24 +1,21 @@
 export default function insertInterval(intervals, newInterval) {
-  if (intervals.length === 0) return [newInterval];
   const res = [];
   let idx = 0;
 
-  if (intervals[idx][0] <= newInterval[0])
+  while (idx < intervals.length && intervals[idx][1] < newInterval[0]) {
     res.push([...intervals[idx++]]);
-  else
-    res.push([...newInterval]);
-
-  for (; idx < intervals.length; idx++) {
-    if (newInterval[0] <= res[res.length - 1][1]) {
-      res[res.length - 1][0] = Math.min(res[res.length - 1][0], newInterval[0]);
-      res[res.length - 1][1] = Math.max(res[res.length - 1][1], newInterval[1]);
-    }
-    if (intervals[idx][0] <= res[res.length - 1][1]) {
-      res[res.length - 1][0] = Math.min(res[res.length - 1][0], intervals[idx][0]);
-      res[res.length - 1][1] = Math.max(res[res.length - 1][1], intervals[idx][1]);
-    } else {
-      res.push([...intervals[idx]]);
-    }
   }
-  return res;
+  if (idx < intervals.length && intervals[idx][0] <= newInterval[1]) {
+    const cur = [
+      Math.min(intervals[idx][0], newInterval[0]),
+      Math.max(intervals[idx++][1], newInterval[1])
+    ];
+    while (idx < intervals.length && intervals[idx][0] <= cur[1]) {
+      cur[1] = Math.max(cur[1], intervals[idx++][1]);
+    }
+    res.push([...cur]);
+  } else {
+    res.push([...newInterval]);
+  }
+  return [...res, ...intervals.slice(idx)];
 };
