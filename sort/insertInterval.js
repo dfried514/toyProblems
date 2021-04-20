@@ -3,11 +3,22 @@ export default function insertInterval(intervals, newInterval) {
   const res = [];
   let idx = 0;
 
-  while (idx < intervals.length && intervals[idx][0] <= newInterval[1]) {
-    const cur = [...intervals[idx]];
+  if (intervals[idx][0] <= newInterval[0])
+    res.push([...intervals[idx++]]);
+  else
+    res.push([...newInterval]);
 
-    while (intervals[idx][0] <= newInterval[1] && intervals[idx][0] >= newInterval[0]) {
-
+  for (; idx < intervals.length; idx++) {
+    if (newInterval[0] <= res[res.length - 1][1]) {
+      res[res.length - 1][0] = Math.min(res[res.length - 1][0], newInterval[0]);
+      res[res.length - 1][1] = Math.max(res[res.length - 1][1], newInterval[1]);
+    }
+    if (intervals[idx][0] <= res[res.length - 1][1]) {
+      res[res.length - 1][0] = Math.min(res[res.length - 1][0], intervals[idx][0]);
+      res[res.length - 1][1] = Math.max(res[res.length - 1][1], intervals[idx][1]);
+    } else {
+      res.push([...intervals[idx]]);
     }
   }
+  return res;
 };

@@ -20,6 +20,22 @@ const a5 = [[1, 3], [4, 5], [11, 14], [20, 22], [24, 30]];
 const b5 = [6, 10];
 const e5 = [[1, 3], [4, 5], [11, 14], [20, 22], [24, 30]];
 
+const a6 = [[1, 2], [5, 8], [10, 14], [20, 22], [24, 30]];
+const b6 = [3, 10];
+const e6 = [[1, 2], [3, 14], [20, 22], [24, 30]];
+
+const a7 = [[5, 8], [20, 22], [24, 30]];
+const b7 = [1, 4];
+const e7 = [[1, 4], [5, 8], [20, 22], [24, 30]];
+
+const a8 = [[5, 8], [20, 22], [24, 30]];
+const b8 = [32, 40];
+const e8 = [[5, 8], [20, 22], [24, 30], [32, 40]];
+
+const a9 = [[2, 8], [10, 15], [20, 22], [24, 30]];
+const b9 = [3, 10];
+const e9 = [[2, 15], [20, 22], [24, 30]];
+
 describe('insertInterval', () => {
   test('single merge', () => {
     expect(insertInterval(a1, b1)).toStrictEqual(e1);
@@ -35,5 +51,17 @@ describe('insertInterval', () => {
   });
   test('no merge', () => {
     expect(insertInterval(a5, b5)).toStrictEqual(e5);
+  });
+  test('merge into target', () => {
+    expect(insertInterval(a6, b6)).toStrictEqual(e6);
+  });
+  test('merge target first', () => {
+    expect(insertInterval(a7, b7)).toStrictEqual(e7);
+  });
+  test('merge target last', () => {
+    expect(insertInterval(a8, b8)).toStrictEqual(e8);
+  });
+  test('merge target into first interval', () => {
+    expect(insertInterval(a9, b9)).toStrictEqual(e9);
   });
 });
