@@ -35,4 +35,13 @@ describe('priorityQueue', () => {
     pq.dequeue();
     expect(pq.data).toStrictEqual([5, 14, 9, 22]);
   });
+  test('priorityQueue', () => {
+    const minFn = (a, b, array) => array[a] - array[b];
+    const pq = new PriorityQueue(minFn);
+    const arr = [4, 5, 5, 9, 22, 14];
+
+    arr.forEach(x => pq.enqueue(x));
+    pq.dequeue();
+    expect(pq.data).toStrictEqual([5, 9, 5, 14, 22]);
+  });
 });

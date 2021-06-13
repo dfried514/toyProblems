@@ -9,9 +9,7 @@ export default class PriorityQueue {
     let child = this.data.length - 1;
     let parent = Math.floor((child - 1) / 2);
 
-    while (parent >= 0) {
-      if (this.compare(parent, child, this.data) <= 0)
-        break;
+    while (parent >= 0 && this.compare(parent, child, this.data) > 0) {
       [this.data[child], this.data[parent]] = [this.data[parent], this.data[child]];
       child = parent;
       parent = Math.floor((child - 1) / 2);
@@ -31,9 +29,9 @@ export default class PriorityQueue {
       const left = (cur * 2) + 1;
       const right = (cur * 2) + 2;
 
-      if (this.data[left] && this.compare(left, cur, this.data) <= 0)
+      if (this.data[left] && this.compare(left, cur, this.data) < 0)
         min = left;
-      if (this.data[right] && this.compare(right, min, this.data) <= 0)
+      if (this.data[right] && this.compare(right, min, this.data) < 0)
         min = right;
       if (min == cur)
         break;
