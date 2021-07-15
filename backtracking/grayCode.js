@@ -12,4 +12,5 @@ function grayCode(n) {
   }
   recurse(n, [0]);
   return res;
+  //yes!
 }
