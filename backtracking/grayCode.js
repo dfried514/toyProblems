@@ -8,7 +8,6 @@ function grayCode(n) {
     }
     recurse(n - 1, num);
     num[0] = num[0] ^ (1 << (n - 1));
-    console.log('num', num, 'n', n);
     recurse(n - 1, num);
   }
   recurse(n, [0]);
