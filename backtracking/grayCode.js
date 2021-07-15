@@ -2,7 +2,6 @@ function grayCode(n) {
   const res = [];
 
   const recurse = (n, num) => {
-    console.log(n, num);
     if (n == 0) {
       res.push(num[0]);
       return;
@@ -15,5 +14,3 @@ function grayCode(n) {
   recurse(n, [0]);
   return res;
 }
-const n = 3;
-console.log(grayCode(n));
